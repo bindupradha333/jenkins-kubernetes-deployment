@@ -1,12 +1,15 @@
 pipeline {
 
   environment {
-    dockerimagename = "bindupradha/react-app"
+    dockerHubUser = "bindupradha"
+    dockerHubPassword = "Hanuman123098@"
+	  dockerimagename = "bindupradha/react-app"
     dockerImage = ""
     
   }
 
   agent any
+  
     
   stages {
 
@@ -24,15 +27,12 @@ pipeline {
       }
     }
 
-    stage('Pushing Image') {
-      environment {
-               registryCredential = 'dockerhub-credentials'
-           }
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
-          }
+    stage('Docker Push') {
+    	agent any
+      steps {
+      	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push bindupradha/react-app:latest'
         }
       }
     }
