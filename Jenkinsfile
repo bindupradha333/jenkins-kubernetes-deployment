@@ -3,10 +3,10 @@ pipeline {
   environment {
     dockerimagename = "bindupradha/react-app"
     dockerImage = ""
-    env.PATH = "${dockerHome}/bin:${env.PATH}"
+    env.PATH = "/var/jenkins_home/workspace/:${env.PATH}"
   }
 
-  agent any
+  agent { dockerfile true }
 
   stages {
 
