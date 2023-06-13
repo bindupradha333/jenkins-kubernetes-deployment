@@ -42,16 +42,11 @@ pipeline {
         }
       }
     }
-	environment {
-    docker_username = "bindupradha"
-    docker_password = "dckr_pat__gmjmLfwYmSqX5h22Cs045Kx0Cs"
 	
-    
-  }
     stage('Login-Into-Docker') {
       steps {
         container('docker') {
-          sh 'docker login -u <docker_username> -p <docker_password>'
+          sh 'docker login -u bindupradha -p dckr_pat__gmjmLfwYmSqX5h22Cs045Kx0Cs'
       }
     }
     }
@@ -62,6 +57,15 @@ pipeline {
       }
     }
      }
+     stage('Deploying React.js container to Kubernetes') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+        }
+      }
+    }
+
+  }
   }
     
 }
