@@ -3,6 +3,7 @@ pipeline {
   environment {
     dockerimagename = "bindupradha/react-app"
     dockerImage = ""
+    env.PATH = "${dockerHome}/bin:${env.PATH}"
   }
 
   agent any
