@@ -3,7 +3,7 @@ pipeline {
   environment {
     dockerHubUser = "bindupradha"
     dockerHubPassword = "Hanuman123098@"
-	  dockerimagename = "bindupradha/react-app"
+    dockerimagename = "bindupradha/react-app"
     dockerImage = ""
     
   }
