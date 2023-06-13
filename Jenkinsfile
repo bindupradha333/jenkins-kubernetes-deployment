@@ -6,8 +6,8 @@ pipeline {
     
   }
 
-  agent { dockerfile true }
-    label 'docker'
+  agent any
+    
   stages {
 
     stage('Checkout Source') {
