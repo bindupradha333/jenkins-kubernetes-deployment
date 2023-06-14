@@ -3,7 +3,7 @@ pipeline {
   environment {
     
 	dockerimagename = "bindupradha/react-app"
-    dockerImage = ""
+        dockerImage = ""
     
   }
 
